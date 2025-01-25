@@ -25,8 +25,26 @@ body{
 
 @media screen and (min-width: 424px){
     .product-wrapper {
-        flex-shrink: 0;
         width: 50%;
+    }
+}
+@media screen and (min-width: 636px){
+    .product-wrapper {
+        width: 33.3%;
+    }
+}
+@media screen and (min-width: 848px){
+    .product-wrapper {
+        width: 25%;
+    }
+}
+@media screen and (min-width: 1500px){
+    .product-row { 
+        justify-content: center;
+        column-gap: 20px;
+    }
+    .product-wrapper {
+        width: auto;
     }
 }
 
