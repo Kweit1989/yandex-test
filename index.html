@@ -14,11 +14,11 @@
                 <div class="product-row">
                     <div class="product-wrapper">
                         <div class="product-container">
-                            <div class="product-wine" id="test">
+                            <div class="product-wine">
                                 <img src="./img/groceries/wine.webp" alt="Вина">
                             </div>
                             <div class="product-milk">
-                                <img src="./img/groceries/milk.webp" alt="Молоко">
+                                <img id="product-milk" src="./img/groceries/milk.webp" alt="Молоко">
                             </div>
                             <div class="product-jam">
                                 <img src="./img/groceries/jam.webp" alt="Варенье">
@@ -310,8 +310,11 @@
                     </div> 
                 </div>
             </div>
-            <div class="product-cart" id="cart">
-                <img src="./img/cart.webp" alt="Корзина-тележка">
+            <div class="product-cart-wrapper" id="cart">
+                <div class="product-cart" id="product-cart">
+                    <img src="./img/cart.webp" alt="Корзина-тележка">
+                    <div class="cart-milk" id="cart-milk"></div>
+                </div>
             </div>
         </section>
     </main>
