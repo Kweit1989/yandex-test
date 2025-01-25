@@ -23,7 +23,6 @@ const startDrag = (e) => {
     e.preventDefault();
     offsetX = e.clientX || e.touches[0].clientX;
     offsetY = e.clientY || e.touches[0].clientY;
-    productMilk.style.visibility = "hidden"; // Сделаем картинку невидимой в процессе перетаскивания
 };
 
 // Перемещение элемента (для десктопа и мобильных устройств)
