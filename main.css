@@ -1,0 +1,153 @@
+html, body {
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+}
+.product{
+    margin-top: 28px;
+    width: 100%;
+}
+.product-row {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none; /* Для Firefox */
+}
+
+.product-row::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari */
+}
+
+.product-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 424px){
+    .product-wrapper {
+        flex-shrink: 0;
+        width: 50%;
+    }
+}
+
+.product-container {
+    position: relative;
+    margin: 0 auto;
+    width: 211.37px;
+    height: 431.35px;
+    background: url(./img/showcase.webp);
+    background-size: contain;
+    background-position: center;
+}
+.product-container > div {
+    position: absolute;
+}
+.product-container > div > img {
+    vertical-align: top;
+}
+.product-wine {
+    top: -3px;
+    left: 22px; 
+}
+.product-wine > img {
+    width: 37px;
+    height: 124.12px;
+}
+.product-milk {
+    top: 31px;
+    left: 64px;
+}
+.product-milk > img {
+    width: 37px;
+    height: 90.73px;
+}
+.product-jam {
+    top: 80px;
+    left: 103px;
+}
+.product-jam > img {
+    width: 46px;
+    height: 41.34px;
+}
+.product-cheese {
+    top: 89px;
+    left: 158px;
+}
+.product-cheese > img{
+    width: 36.2px;
+    height: 34.38px;
+}
+.product-meat {
+    top: 169.29px;
+    left: 9.28px;
+    transform: rotate(5.64deg);
+}
+.product-meat > img {
+    width: 49px;
+    height: 48.76px;
+}
+.product-chicken_meat {
+    top: 175.22px;
+    left: 63.54px;
+    transform: rotate(15.06deg);
+}
+.product-chicken_meat > img {
+    width: 54.47px;
+    height: 49.85px;
+}
+.product-candy {
+    top: 176px;
+    left: 129px;
+}
+.product-candy > img {
+    width: 76.17px;
+    height: 46.98px;
+}
+.product-pineapple {
+    top: 237px;
+    left: 13px;
+}
+.product-pineapple > img {
+    width: 35px;
+    height: 74.08px;
+}
+.product-banana {
+    top: 265px;
+    left: 58px;
+}
+.product-banana > img{
+    width: 47px;
+    height: 47.41px;
+}
+.product-apple {
+    top: 276px;
+    left: 115px;
+}
+.product-apple > img {
+    width: 31px;
+    height: 35.99px;
+}
+.product-leek {
+    top: 267px;
+    left: 156px;
+}
+.product-leek > img {
+    width: 61.74px;
+    height: 50.98px;
+}
+.product-cart{
+    position: absolute;
+    top: 371.97px;
+    left: -50%;
+    transform: translateX(-50%);
+    transition: left 1.5s ease-out;
+}
+.product-cart > img {
+    display: block;
+    width: 276.08px;
+    height: 325.07px;
+    margin: 0 auto;
+}
+
+
+
