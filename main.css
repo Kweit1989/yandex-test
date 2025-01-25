@@ -43,6 +43,11 @@ img {
         width: 25%;
     }
 }
+@media screen and (min-width: 1060px){
+    .product-wrapper {
+        width: 20%;
+    }
+}
 @media screen and (min-width: 1500px){
     .product-row { 
         justify-content: center;
