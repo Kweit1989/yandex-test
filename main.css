@@ -18,7 +18,9 @@ img {
     display: flex;
     overflow-x: scroll;
     padding-top: 28px;
+    padding-bottom: 100%;
     scrollbar-width: none; /* Для Firefox */
+    
 }
 
 .product-row::-webkit-scrollbar {
@@ -84,6 +86,7 @@ img {
     left: 64px;
     width: 37px;
     height: 90.73px;
+    transition: all 0.5s ease;
 }
 .product-jam {
     top: 80px;
@@ -157,7 +160,7 @@ img {
 }
 .product-cart > img {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: block;
     width: 276.08px;
     height: 325.07px;
@@ -173,4 +176,14 @@ img {
     width: 54.19px;
     height: 132.89px;
     background-color: aqua;
+}
+.cart-banana {
+    position: absolute;
+    top: 108.82px;
+    left: 109px;
+    z-index: 2;
+    transform: rotate(-25.74deg);
+    width: 71px;
+    height: 71.62px;
+    background-color: rgb(81, 255, 0);
 }

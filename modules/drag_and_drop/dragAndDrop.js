@@ -1,69 +1,113 @@
-export let isDragging = false;
-export let offsetX, offsetY;
-let startX, startY; // Начальные координаты касания
+export const startDrag = (e, product) => {
+    const state = product.state;
+    const productElement = document.getElementById(product.element);
 
-export const startDrag = (e, productMilk) => {
-    isDragging = true;
-    e.preventDefault();
+    if (e.cancelable) {
+        e.preventDefault();
+    }
+    state.isDragging = true;
 
-    // Сохраняем начальные координаты
-    startX = e.clientX || e.touches[0].clientX;
-    startY = e.clientY || e.touches[0].clientY;
+    state.startX = e.clientX || e.touches[0].clientX;
+    state.startY = e.clientY || e.touches[0].clientY;
 
-    offsetX = startX;
-    offsetY = startY;
+    state.offsetX = state.startX;
+    state.offsetY = state.startY;
+
+    productElement.addEventListener("touchend", (event) => handleClickOrDrag(event, product));
+    productElement.addEventListener("mouseup", (event) => handleClickOrDrag(event, product));
 };
 
+export const dragMove = (e, product) => {
+    const state = product.state;
+    const productElement = document.getElementById(product.element);
 
-export const dragMove = (e, productMilk) => {
-    if (isDragging) {
+    if (state.isDragging) {
         const clientX = e.clientX || e.touches[0].clientX;
         const clientY = e.clientY || e.touches[0].clientY;
-        const moveX = clientX - offsetX;
-        const moveY = clientY - offsetY;
-        productMilk.style.position = "absolute";
-        productMilk.style.left = `${moveX}px`;
-        productMilk.style.top = `${moveY}px`;
+
+        const moveX = clientX - state.offsetX;
+        const moveY = clientY - state.offsetY;
+
+        productElement.style.position = "absolute";
+        productElement.style.left = `${moveX}px`;
+        productElement.style.top = `${moveY}px`;
     }
 };
 
-export const endDrag = (e, productMilk, productCart, cartMilk, shelfMilk) => {
-    if (isDragging) {
-        isDragging = false;
+export const endDrag = (e, product, productCart) => {
+    const state = product.state;
+    const productElement = document.getElementById(product.element);
+    const cartElement = document.getElementById(product.cart);
+    const shelfElement = document.getElementById(product.shelf);
+
+    if (state.isDragging) {
+        state.isDragging = false;
 
         const endX = e.clientX || (e.changedTouches ? e.changedTouches[0].clientX : 0);
         const endY = e.clientY || (e.changedTouches ? e.changedTouches[0].clientY : 0);
 
-        const deltaX = Math.abs(endX - startX);
-        const deltaY = Math.abs(endY - startY);
+        const deltaX = Math.abs(endX - state.startX);
+        const deltaY = Math.abs(endY - state.startY);
 
-        // Если движение минимальное, считаем это кликом
+        // Удаляем временное событие
+        productElement.removeEventListener("touchend", (event) => handleClickOrDrag(event, product));
+        productElement.removeEventListener("mouseup", (event) => handleClickOrDrag(event, product));
+
+        // Если движение минимальное, это считается кликом
         if (deltaX < 10 && deltaY < 10) {
-            // Вернуть продукт на полку
-            if (productMilk.parentElement === cartMilk) {
-                shelfMilk.appendChild(productMilk);
-                productMilk.style.position = "";
-                productMilk.style.left = "";
-                productMilk.style.top = "";
-            }
+            handleAddOrRemove(product, cartElement, shelfElement); // Обрабатываем клик
         } else {
-            // Обработка drop
+            // Проверяем, было ли перетаскивание в корзину
             const cartRect = productCart.getBoundingClientRect();
-            const milkRect = productMilk.getBoundingClientRect();
+            const productRect = productElement.getBoundingClientRect();
 
             if (
-                milkRect.left >= cartRect.left &&
-                milkRect.top >= cartRect.top &&
-                milkRect.right <= cartRect.right &&
-                milkRect.bottom <= cartRect.bottom
+                productRect.left >= cartRect.left &&
+                productRect.top >= cartRect.top &&
+                productRect.right <= cartRect.right &&
+                productRect.bottom <= cartRect.bottom
             ) {
-                cartMilk.appendChild(productMilk);
-                productMilk.style.left = "0px";
-                productMilk.style.top = "0px";
+                handleAddToCart(product, cartElement); // Добавляем в корзину при дропе
             } else {
-                productMilk.style.left = "0px";
-                productMilk.style.top = "0px";
+                productElement.style.left = "0px";
+                productElement.style.top = "0px";
             }
         }
+    }
+};
+
+const handleClickOrDrag = (e, product) => {
+    const productElement = document.getElementById(product.element);
+    const cartElement = document.getElementById(product.cart);
+    const shelfElement = document.getElementById(product.shelf);
+
+    if (!product.state.isDragging) {
+        handleAddOrRemove(product, cartElement, shelfElement);
+    }
+};
+
+const handleAddToCart = (product, cartElement) => {
+    const productElement = document.getElementById(product.element);
+    cartElement.appendChild(productElement);
+    productElement.style.position = "absolute";
+    productElement.style.left = "0px";
+    productElement.style.top = "0px";
+};
+
+const handleReturnToShelf = (product, shelfElement) => {
+    const productElement = document.getElementById(product.element);
+    shelfElement.appendChild(productElement);
+    productElement.style.position = "";
+    productElement.style.left = "";
+    productElement.style.top = "";
+};
+
+const handleAddOrRemove = (product, cartElement, shelfElement) => {
+    const productElement = document.getElementById(product.element);
+
+    if (productElement.parentElement === cartElement) {
+        handleReturnToShelf(product, shelfElement); // Возвращаем на полку
+    } else {
+        handleAddToCart(product, cartElement); // Добавляем в корзину
     }
 };

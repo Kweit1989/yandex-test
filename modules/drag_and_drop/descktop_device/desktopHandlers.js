@@ -1,7 +1,8 @@
 import { startDrag, dragMove, endDrag } from "../dragAndDrop.js";
 
-export const initDesktopHandlers = (productMilk, productCart, cartMilk, shelfMilk) => {
-    productMilk.addEventListener("mousedown", (e) => startDrag(e, productMilk));
-    document.addEventListener("mousemove", (e) => dragMove(e, productMilk));
-    document.addEventListener("mouseup", (e) => endDrag(e, productMilk, productCart, cartMilk, shelfMilk));
+export const initDesktopHandlers = (product, productCart) => {
+    const productElement = document.getElementById(product.element);
+    productElement.addEventListener("mousedown", (e) => startDrag(e, product));
+    document.addEventListener("mousemove", (e) => dragMove(e, product));
+    document.addEventListener("mouseup", (e) => endDrag(e, product, productCart));;
 };

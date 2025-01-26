@@ -1,7 +1,8 @@
 import { startDrag, dragMove, endDrag } from "../dragAndDrop.js";
 
-export const initTouchHandlers = (productMilk, productCart, cartMilk, shelfMilk) => {
-    productMilk.addEventListener("touchstart", (e) => startDrag(e, productMilk));
-    document.addEventListener("touchmove", (e) => dragMove(e, productMilk));
-    document.addEventListener("touchend", (e) => endDrag(e, productMilk, productCart, cartMilk, shelfMilk));
+export const initTouchHandlers = (product, productCart) => {
+    const productElement = document.getElementById(product.element);
+    productElement.addEventListener("touchstart", (e) => startDrag(e, product));
+    document.addEventListener("touchmove", (e) => dragMove(e, product));
+    document.addEventListener("touchend", (e) => endDrag(e, product, productCart));
 };

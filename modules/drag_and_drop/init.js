@@ -2,16 +2,46 @@ import { initDesktopHandlers } from "./descktop_device/desktopHandlers.js";
 import { initTouchHandlers } from "./touch_device/touchHandlers.js";
 
 export function initializeApp() {
-    const productMilk = document.getElementById("product-milk");
     const productCart = document.getElementById("product-cart");
-    const cartMilk = document.getElementById("cart-milk");
-    const shelfMilk = document.getElementById("container-milk");
 
-    // Инициализация для десктопов
-    initDesktopHandlers(productMilk, productCart, cartMilk, shelfMilk);
+    // Массив с настройками продуктов
+    const products = [
+        {
+            id: "milk",
+            element: "product-milk",
+            cart: "cart-milk",
+            shelf: "container-milk",
+            state: {
+                isDragging: false,
+                startX: 0,
+                startY: 0,
+                offsetX: 0,
+                offsetY: 0,
+            },
+        },
+        {
+            id: "banana",
+            element: "product-banana",
+            cart: "cart-banana",
+            shelf: "container-banana",
+            state: {
+                isDragging: false,
+                startX: 0,
+                startY: 0,
+                offsetX: 0,
+                offsetY: 0,
+            },
+        },
+    ];
+    
 
-    // Инициализация для мобильных устройств
-    initTouchHandlers(productMilk, productCart, cartMilk, shelfMilk);
+    products.forEach((product) => {
+        // Инициализация для десктопов
+        initDesktopHandlers(product, productCart);
+
+        // Инициализация для мобильных устройств
+        initTouchHandlers(product, productCart);
+    });
 
     // Поддержка dragover и drop для корзины
     productCart.addEventListener("dragover", (e) => e.preventDefault());
