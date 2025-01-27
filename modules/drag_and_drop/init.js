@@ -36,10 +36,4 @@ export function initializeApp() {
         // Инициализация для мобильных устройств
         initTouchHandlers(product, productCart, updateCount);
     });
-
-    
-
-    // Поддержка dragover и drop для корзины
-    productCart.addEventListener("dragover", (e) => e.preventDefault());
-    productCart.addEventListener("drop", (e) => e.preventDefault());
 }
