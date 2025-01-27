@@ -1,0 +1,81 @@
+/* Корзина */
+.product-cart-wrapper{
+    position: absolute;
+    top: 371.97px;
+    left: -50%;
+    transform: translateX(-50%);
+    transition: left 1.5s ease-out;
+}
+.product-cart {
+    position: relative;
+}
+.cart{
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 276.08px;
+    height: 325.07px;
+    margin: 0 auto;
+    pointer-events: none;
+}
+
+/* Продукты в корзине */
+.products-all > div{
+    position: absolute;
+}
+#cart-milk {
+    top: 46.58px;
+    left: 69.53px;
+    z-index: 1;
+    width: 54.19px;
+    height: 132.89px;
+}
+#cart-banana {
+    top: 108.82px;
+    left: 109px;
+    z-index: 2;
+    transform: rotate(-25.74deg);
+    width: 71px;
+    height: 71.62px;
+}
+#cart-pineapple {
+    top: 68.33px;
+    left: 162.99px;
+    z-index: 1;
+    transform: rotate(7.43deg);
+    width: 50.03px;
+    height: 105.89px;
+}
+#cart-wine {
+    top: 11.33px;
+    left: 199.99px;
+    z-index: 1;
+    transform: rotate(18.43deg);
+    width: 55.70px;
+    height: 168.77px;
+}
+
+
+/* Ссылка на Яндекс Лавку*/
+.payment-button {
+    display: none;
+    position: absolute;
+    top: 152.03px;
+    left: 51px;
+    z-index: 4;
+    box-sizing: border-box;
+    background-color: #FCE000;
+    font-family: 'YS Text', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 200%;
+    letter-spacing: -0.005em;
+    text-align: center;
+    width: 174px;
+    border-radius: 16px;
+    padding: 12px 18px;
+}
+.payment-button > a {
+    color: #000;
+    text-decoration: none;
+}

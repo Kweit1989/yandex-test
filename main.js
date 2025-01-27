@@ -14,3 +14,4 @@ setTimeout(() => {
 
 // Перетаскивание продуктов
 initializeApp();
+

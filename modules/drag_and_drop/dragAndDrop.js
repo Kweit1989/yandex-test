@@ -34,7 +34,7 @@ export const dragMove = (e, product) => {
     }
 };
 
-export const endDrag = (e, product, productCart) => {
+export const endDrag = (e, product, productCart, updateCount) => {
     const state = product.state;
     const productElement = document.getElementById(product.element);
     const cartElement = document.getElementById(product.cart);
@@ -55,7 +55,7 @@ export const endDrag = (e, product, productCart) => {
 
         // Если движение минимальное, это считается кликом
         if (deltaX < 10 && deltaY < 10) {
-            handleAddOrRemove(product, cartElement, shelfElement); // Обрабатываем клик
+            handleAddOrRemove(product, cartElement, shelfElement, updateCount); // Обрабатываем клик
         } else {
             // Проверяем, было ли перетаскивание в корзину
             const cartRect = productCart.getBoundingClientRect();
@@ -67,7 +67,7 @@ export const endDrag = (e, product, productCart) => {
                 productRect.right <= cartRect.right &&
                 productRect.bottom <= cartRect.bottom
             ) {
-                handleAddToCart(product, cartElement); // Добавляем в корзину при дропе
+                handleAddToCart(product, cartElement, updateCount); // Добавляем в корзину при дропе
             } else {
                 productElement.style.left = "0px";
                 productElement.style.top = "0px";
@@ -86,28 +86,30 @@ const handleClickOrDrag = (e, product) => {
     }
 };
 
-const handleAddToCart = (product, cartElement) => {
+const handleAddToCart = (product, cartElement, updateCount) => {
     const productElement = document.getElementById(product.element);
     cartElement.appendChild(productElement);
     productElement.style.position = "absolute";
     productElement.style.left = "0px";
     productElement.style.top = "0px";
+    updateCount(1); // Увеличиваем счетчик
 };
 
-const handleReturnToShelf = (product, shelfElement) => {
+const handleReturnToShelf = (product, shelfElement, updateCount) => {
     const productElement = document.getElementById(product.element);
     shelfElement.appendChild(productElement);
     productElement.style.position = "";
     productElement.style.left = "";
     productElement.style.top = "";
+    updateCount(-1); // Уменьшаем счетчик
 };
 
-const handleAddOrRemove = (product, cartElement, shelfElement) => {
+const handleAddOrRemove = (product, cartElement, shelfElement, updateCount) => {
     const productElement = document.getElementById(product.element);
 
     if (productElement.parentElement === cartElement) {
-        handleReturnToShelf(product, shelfElement); // Возвращаем на полку
+        handleReturnToShelf(product, shelfElement, updateCount); // Возвращаем на полку
     } else {
-        handleAddToCart(product, cartElement); // Добавляем в корзину
+        handleAddToCart(product, cartElement, updateCount); // Добавляем в корзину
     }
 };

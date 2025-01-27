@@ -1,0 +1,130 @@
+.product-row {
+    display: flex;
+    overflow-x: scroll;
+    padding-top: 28px;
+    padding-bottom: 100%;
+    scrollbar-width: none; /* Для Firefox */
+    
+}
+
+.product-row::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari */
+}
+
+.product-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 424px){
+    .product-wrapper {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 636px){
+    .product-wrapper {
+        width: 33.3%;
+    }
+}
+@media screen and (min-width: 848px){
+    .product-wrapper {
+        width: 25%;
+    }
+}
+@media screen and (min-width: 1060px){
+    .product-wrapper {
+        width: 20%;
+    }
+}
+@media screen and (min-width: 1500px){
+    .product-row { 
+        justify-content: center;
+        column-gap: 20px;
+    }
+    .product-wrapper {
+        width: auto;
+    }
+}
+
+.product-container {
+    position: relative;
+    margin: 0 auto;
+    width: 211.37px;
+    height: 431.35px;
+    background: url(../img/showcase.webp);
+    background-size: contain;
+    background-position: center;
+}
+.product-container > div {
+    position: absolute;
+}
+.product-wine {
+    top: -3px;
+    left: 22px; 
+    width: 37px;
+    height: 124.12px;
+}
+.product-milk {
+    top: 31px;
+    left: 64px;
+    width: 37px;
+    height: 90.73px;
+}
+.product-jam {
+    top: 80px;
+    left: 103px;
+    width: 46px;
+    height: 41.34px;
+}
+.product-cheese {
+    top: 89px;
+    left: 158px;
+    width: 36.2px;
+    height: 34.38px;
+}
+.product-meat {
+    top: 169.29px;
+    left: 9.28px;
+    width: 49px;
+    height: 48.76px;
+    transform: rotate(5.64deg);
+}
+.product-chicken_meat {
+    top: 175.22px;
+    left: 63.54px;
+    width: 54.47px;
+    height: 49.85px;
+    transform: rotate(15.06deg);
+}
+.product-candy {
+    top: 176px;
+    left: 129px;
+    width: 76.17px;
+    height: 46.98px;
+}
+.product-pineapple {
+    top: 237px;
+    left: 13px;
+    width: 35px;
+    height: 74.08px;
+}
+.product-banana {
+    top: 265px;
+    left: 58px;
+    width: 47px;
+    height: 47.41px;
+}
+.product-apple {
+    top: 276px;
+    left: 115px;
+    width: 31px;
+    height: 35.99px;
+}
+
+.product-leek {
+    top: 267px;
+    left: 156px;
+    width: 61.74px;
+    height: 50.98px;
+}
+
