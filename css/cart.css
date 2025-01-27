@@ -23,6 +23,9 @@
 .products-all > div{
     position: absolute;
 }
+.products-all > div > img {
+    cursor: pointer;
+}
 #cart-milk {
     top: 46.58px;
     left: 69.53px;

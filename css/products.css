@@ -58,6 +58,9 @@
 .product-container > div {
     position: absolute;
 }
+.product-container > div > img {
+    cursor: grab;
+}
 .product-wine {
     top: -3px;
     left: 22px; 
